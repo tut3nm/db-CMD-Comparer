@@ -1,0 +1,88 @@
+PRAGMA foreign_keys = ON;
+
+-- Tabla user
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE,
+  userpass TEXT NOT NULL,
+  email TEXT NOT NULL,
+  birthday DATE,
+  permissions BOOLEAN NOT NULL DEFAULT 0
+);
+
+-- Tabla brand
+CREATE TABLE brand (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  devices INTEGER DEFAULT 0
+);
+
+-- Tabla phone
+CREATE TABLE phone (
+  id INTEGER PRIMARY KEY,
+  model TEXT NOT NULL,
+  code TEXT,
+  age INTEGER,
+  release_date DATE,
+  brand_id INTEGER NOT NULL,
+  FOREIGN KEY (brand_id) REFERENCES brand(id) ON DELETE CASCADE
+);
+
+-- Tabla phone_specs
+CREATE TABLE phone_specs (
+  id INTEGER PRIMARY KEY,
+  phone_id INTEGER NOT NULL,
+  cam_1 TEXT,
+  cam_2 TEXT,
+  cam_3 TEXT,
+  cam_4 TEXT,
+  cam_front TEXT,
+  chipset TEXT,
+  display_tec TEXT,
+  display_ppp INTEGER,
+  display_inch REAL,
+  display_freq INTEGER,
+  batery INTEGER,
+  charge INTEGER,
+  os TEXT,
+  ram INTEGER,
+  storage INTEGER,
+  dimensions TEXT,
+  weight INTEGER,
+  video_specs TEXT,
+  has_5g BOOLEAN DEFAULT 0,
+  calification REAL,
+  cal_pri_qua REAL,
+  FOREIGN KEY (phone_id) REFERENCES phone(id) ON DELETE CASCADE
+);
+
+-- Tabla watch
+CREATE TABLE watch (
+  id INTEGER PRIMARY KEY,
+  model TEXT NOT NULL,
+  code TEXT,
+  age INTEGER,
+  release_date DATE,
+  brand_id INTEGER NOT NULL,
+  FOREIGN KEY (brand_id) REFERENCES brand(id) ON DELETE CASCADE
+);
+
+-- Tabla watch_specs
+CREATE TABLE watch_specs (
+  id INTEGER PRIMARY KEY,
+  watch_id INTEGER NOT NULL,
+  chipset TEXT,
+  display_tec TEXT,
+  display_ppp INTEGER,
+  display_inch REAL,
+  batery INTEGER,
+  os TEXT,
+  ram INTEGER,
+  storage INTEGER,
+  dimensions TEXT,
+  weight INTEGER,
+  has_sim BOOLEAN DEFAULT 0,
+  calification REAL,
+  cal_pri_qua REAL,
+  FOREIGN KEY (watch_id) REFERENCES watch(id) ON DELETE CASCADE
+);

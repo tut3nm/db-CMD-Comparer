@@ -1,11 +1,12 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('db-cmd', 'root', 'UTN1234SanFco', {
-  host: '34.95.159.240',
-  dialect: 'mysql',
-  port: 3306,
-  logging: false,
-});
+// Option 1: Passing a connection URI
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage:'db-mysql.sql',
+  logQueryParameters: true,
+  benchmark:true,
+  }) // Example for sqlite
 
 async function testConnection() {
   try {
