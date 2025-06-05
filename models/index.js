@@ -1,4 +1,4 @@
-const { sequelize, Sequelize } = require('../db');
+const { sequelize, Sequelize } = require('../db-mysql/db-mysql.sqlite');
 const DataTypes = Sequelize.DataTypes;
 
 const models = {
