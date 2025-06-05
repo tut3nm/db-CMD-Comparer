@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
     },
     cam_1: {
       type: DataTypes.TEXT
@@ -24,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     },
     display_tec: {
-      type: DataTypes.STRING(10)
+      type: DataTypes.STRING
     },
     display_ppp: {
       type: DataTypes.INTEGER
@@ -42,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     os: {
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING
     },
     ram: {
       type: DataTypes.INTEGER
@@ -51,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     dimensions: {
-      type: DataTypes.STRING(45)
+      type: DataTypes.STRING
     },
     weight: {
       type: DataTypes.INTEGER

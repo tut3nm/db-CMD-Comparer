@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
     },
     chipset: {
       type: DataTypes.TEXT
@@ -21,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     os: {
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING
     },
     ram: {
       type: DataTypes.INTEGER
@@ -30,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     dimensions: {
-      type: DataTypes.STRING(45)
+      type: DataTypes.STRING
     },
     weight: {
       type: DataTypes.INTEGER

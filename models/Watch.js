@@ -3,20 +3,19 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
     },
     model: {
-      type: DataTypes.STRING(45),
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     code: {
-      type: DataTypes.STRING(45)
+      type: DataTypes.STRING,
     },
     age: {
       type: DataTypes.INTEGER
     },
     release_date: {
-      type: DataTypes.DATEONLY
+      type: DataTypes.DATEONLY,
     }
   });
 };
