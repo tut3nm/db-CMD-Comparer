@@ -1,26 +1,61 @@
 const { sequelize, Sequelize } = require('../db-config');
 const DataTypes = Sequelize.DataTypes;
 
+const userModel = require('./User');
+const brandModel = require('./Brand');
+const phoneModel = require('./Phone');
+const phoneSpecsModel = require('./PhoneSpecs');
+const watchModel = require('./Watch');
+const watchSpecsModel = require('./WatchSpecs');
 
-const User = require('./User')(sequelize, DataTypes);
-const Brand = require('./Brand')(sequelize, DataTypes);
-const Phone = require('./Phone')(sequelize, DataTypes);
-const PhoneSpecs = require('./PhoneSpecs')(sequelize, DataTypes);
-const Watch = require('./Watch')(sequelize, DataTypes);
-const WatchSpecs = require('./WatchSpecs')(sequelize, DataTypes);
+const User = userModel(sequelize, DataTypes);
+const Brand = brandModel(sequelize, DataTypes);
+const Phone = phoneModel(sequelize, DataTypes);
+const PhoneSpecs = phoneSpecsModel(sequelize, DataTypes);
+const Watch = watchModel(sequelize, DataTypes);
+const WatchSpecs = watchSpecsModel(sequelize, DataTypes);
 
-Brand.hasMany(Phone, { foreignKey: 'brand_id', as: 'phones' });
-Phone.belongsTo(Brand, { foreignKey: 'brand_id', as: 'brand' });
+Brand.hasMany(Phone, { 
+  foreignKey: 'brand_id', 
+  as: 'phones' 
+});
 
-Phone.hasOne(PhoneSpecs, { foreignKey: 'phone_id', as: 'specs' });
-PhoneSpecs.belongsTo(Phone, { foreignKey: 'phone_id', as: 'phone' });
+Phone.belongsTo(Brand, { 
+  foreignKey: 'brand_id', 
+  as: 'brand' 
+});
 
-Brand.hasMany(Watch, { foreignKey: 'brand_id', as: 'watches' });
-Watch.belongsTo(Brand, { foreignKey: 'brand_id', as: 'brand' });
+Phone.hasOne(PhoneSpecs, { 
+  foreignKey: 'phone_id', 
+  as: 'specs' 
+});
 
-Watch.hasOne(WatchSpecs, { foreignKey: 'watch_id', as: 'specs' });
-WatchSpecs.belongsTo(Watch, { foreignKey: 'watch_id', as: 'watch' });
+PhoneSpecs.belongsTo(Phone, { 
+  foreignKey: 'phone_id', 
+  as: 'phone' 
+});
 
+Brand.hasMany(Watch, { 
+  foreignKey: 'brand_id', 
+  as: 'watches' 
+});
+
+Watch.belongsTo(Brand, { 
+  foreignKey: 'brand_id', 
+  as: 'brand' 
+});
+
+Watch.hasOne(WatchSpecs, { 
+  foreignKey: 'watch_id', 
+  as: 'specs' 
+});
+
+WatchSpecs.belongsTo(Watch, { 
+  foreignKey: 'watch_id', 
+  as: 'watch' 
+});
+
+// Exportar todo
 module.exports = {
   sequelize,
   Sequelize,
@@ -29,5 +64,5 @@ module.exports = {
   Phone,
   PhoneSpecs,
   Watch,
-  WatchSpecs,
+  WatchSpecs
 };

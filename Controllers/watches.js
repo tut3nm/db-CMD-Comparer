@@ -1,4 +1,4 @@
-const { Watch, Watch_specs } = require('Watch/models' & 'Watch_specs/models');
+const { Watch, Watch_specs } = require('../models');
 
 exports.getWatchById = async (req, res) => {
   try {

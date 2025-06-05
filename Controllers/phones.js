@@ -1,4 +1,4 @@
-const { Phone, Phone_specs } = require('Phone/models' & 'Phone_specs/models');
+const { Phone, Phone_specs } = require('../models');
 
 exports.getPhoneById = async (req, res) => {
   try {

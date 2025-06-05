@@ -1,4 +1,4 @@
-const { User } = require('User/models');
+const { User } = require('../models');
 
 
 exports.getToken = async (req, res) => {

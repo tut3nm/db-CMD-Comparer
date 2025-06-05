@@ -1,4 +1,4 @@
-const { Brand, Phone, Watch} = require('Brand/models');
+const { Brand, Phone, Watch} = require('../models');
 
 
 exports.getBrandById = async (req, res) => {
