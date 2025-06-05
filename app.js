@@ -2,7 +2,9 @@ const express = require('express');
 const { sequelize } = require('./db-config');
 
 const app = express();
-
+app.get('/', (req, res) => {
+  res.send('¡Bienvenido a la API!');
+});
 app.use(express.json());
 app.use('/api/brands', require('./routes/brands'));
 app.use('/api/phones', require('./routes/phones'));
