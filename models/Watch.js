@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('phone', {
+  return sequelize.define('watch', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,

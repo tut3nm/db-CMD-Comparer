@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `userpass` VARCHAR(255) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `birthday` DATE NULL,
-  `permissions` INT NOT NULL DEFAULT 0,
+  `permissions` BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -29,14 +29,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`brand` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `devices` INT NULL DEFAULT 0,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_brand_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_brand_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------

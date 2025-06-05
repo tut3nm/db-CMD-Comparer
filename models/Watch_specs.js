@@ -1,24 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('phone_specs', {
+  return sequelize.define('watch_specs', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    cam_1: {
-      type: DataTypes.TEXT
-    },
-    cam_2: {
-      type: DataTypes.TEXT
-    },
-    cam_3: {
-      type: DataTypes.TEXT
-    },
-    cam_4: {
-      type: DataTypes.TEXT
-    },
-    cam_front: {
-      type: DataTypes.TEXT
     },
     chipset: {
       type: DataTypes.TEXT
@@ -32,13 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     display_inch: {
       type: DataTypes.FLOAT
     },
-    display_freq: {
-      type: DataTypes.INTEGER
-    },
     batery: {
-      type: DataTypes.INTEGER
-    },
-    charge: {
       type: DataTypes.INTEGER
     },
     os: {
@@ -56,10 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     weight: {
       type: DataTypes.INTEGER
     },
-    video_specs: {
-      type: DataTypes.TEXT
-    },
-    has_5g: {
+    has_sim: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
