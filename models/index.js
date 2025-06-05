@@ -5,9 +5,9 @@ const models = {
   User: require('./User')(sequelize, DataTypes),
   Brand: require('./Brand')(sequelize, DataTypes),
   Phone: require('./Phone')(sequelize, DataTypes),
-  PhoneSpecs: require('./PhoneSpecs')(sequelize, DataTypes),
+  PhoneSpecs: require('./Phone_Specs')(sequelize, DataTypes),
   Watch: require('./Watch')(sequelize, DataTypes),
-  WatchSpecs: require('./WatchSpecs')(sequelize, DataTypes)
+  WatchSpecs: require('./Watch_Specs')(sequelize, DataTypes)
 };
 
 models.Phone.belongsTo(models.Brand, {
