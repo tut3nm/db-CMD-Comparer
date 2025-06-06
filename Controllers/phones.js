@@ -40,7 +40,6 @@ exports.createPhone = async (req, res) => {
   }
 };
 
-// Actualizar un producto
 exports.updatePhone = async (req, res) => {
   try {
     const phone = await Phone.findByPk(req.params.id);
