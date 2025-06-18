@@ -1,9 +1,9 @@
-const { Phone, Phone_specs } = require('../models');
+const { Phone, PhoneSpecs } = require('../models');
 
 exports.getPhoneById = async (req, res) => {
   try {
     const phone = await Phone.findByPk(req.params.id, {
-      include: Phone_specs
+      include: PhoneSpecs
     });
 
     if (!phone) {
@@ -19,7 +19,7 @@ exports.getPhoneById = async (req, res) => {
 
 exports.getAllPhones = async (req, res) => {
   try {
-    const phones = await Phone.findAll({ include: Phone_specs });
+    const phones = await Phone.findAll({ include: PhoneSpecs });
     res.json(phones);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -32,7 +32,7 @@ exports.createPhone = async (req, res) => {
     const { model, code, price, release_date, age, specs } = req.body;
 
     const phone = await Phone.create({ model, code, price, release_date, age });
-    const phoneSpecs = await Phone_specs.create({ ...specs, PhoneId: phone.id });
+    const phoneSpecs = await PhoneSpecs.create({ ...specs, phone_id: phone.id });
 
     res.status(201).json({ phone, phoneSpecs });
   } catch (error) {

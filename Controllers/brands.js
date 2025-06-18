@@ -14,7 +14,7 @@ exports.getBrandById = async (req, res) => {
 
 exports.getPhonesByBrand = async (req, res) => {
   try {
-    const phones = await Phone.findAll({ where: { BrandId: req.params.id } });
+    const phones = await Phone.findAll({ where: { brand_id: req.params.id } });
     res.json(phones);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -24,7 +24,7 @@ exports.getPhonesByBrand = async (req, res) => {
 
 exports.getWatchesByBrand = async (req, res) => {
   try {
-    const watches = await Watch.findAll({ where: { BrandId: req.params.id } });
+    const watches = await Watch.findAll({ where: { brand_id: req.params.id } })
     res.json(watches);
   } catch (error) {
     res.status(500).json({ error: error.message });
