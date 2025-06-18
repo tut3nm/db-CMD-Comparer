@@ -2,11 +2,6 @@ const express = require('express');
 const { sequelize } = require('./db-config');
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
-}));
-
 const app = express();
 app.get('/', (req, res) => {
   res.send('¡Bienvenido a la API!');
@@ -23,7 +18,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 async function startServer() {
   try {
     await sequelize.authenticate();
