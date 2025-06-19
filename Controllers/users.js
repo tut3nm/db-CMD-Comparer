@@ -45,3 +45,12 @@ exports.createUser = async (req, res) => {
     const { username, userpass, email, birthday, permissions } = req.body;
     const user = await sequelize.models.user.create(req.body);
   };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
