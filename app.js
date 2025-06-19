@@ -20,7 +20,7 @@ async function startServer() {
     await sequelize.authenticate();
     console.log('Conexión a SQLite establecida');
     
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
   
     
   } catch (error) {
