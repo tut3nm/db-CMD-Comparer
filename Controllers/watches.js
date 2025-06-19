@@ -1,19 +1,27 @@
 const { Watch, WatchSpecs } = require('../models');
 
-exports.getWatchById = async (req, res) => {
+exports.getAllWatches = async (req, res) => {
   try {
-    const watch = await Watch.findByPk(req.params.id, { include: WatchSpecs });
-    if (!watch) return res.status(404).json({ message: 'Reloj no encontrado' });
-    res.json(watch);
+    const watches = await Watch.findAll({
+      include: { model: WatchSpecs, as: 'specs' }
+    });
+    res.json(watches);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getAllWatches = async (req, res) => {
+exports.getWatchById = async (req, res) => {
   try {
-    const watches = await Watch.findAll({ include: WatchSpecs });
-    res.json(watches);
+    const watch = await Watch.findByPk(req.params.id, {
+      include: { model: WatchSpecs, as: 'specs' }
+    });
+
+    if (!watch) {
+      return res.status(404).json({ message: 'Reloj no encontrado' });
+    }
+
+    res.json(watch);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

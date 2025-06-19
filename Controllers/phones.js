@@ -1,9 +1,20 @@
 const { Phone, PhoneSpecs } = require('../models');
 
+exports.getAllPhones = async (req, res) => {
+  try {
+    const phones = await Phone.findAll({
+      include: { model: PhoneSpecs, as: 'specs' }
+    });
+    res.json(phones);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.getPhoneById = async (req, res) => {
   try {
     const phone = await Phone.findByPk(req.params.id, {
-      include: PhoneSpecs
+      include: { model: PhoneSpecs, as: 'specs' }
     });
 
     if (!phone) {
@@ -11,16 +22,6 @@ exports.getPhoneById = async (req, res) => {
     }
 
     res.json(phone);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-
-exports.getAllPhones = async (req, res) => {
-  try {
-    const phones = await Phone.findAll({ include: PhoneSpecs });
-    res.json(phones);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
