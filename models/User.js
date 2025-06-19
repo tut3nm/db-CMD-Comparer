@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
     birthday: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING,
     },
     permissions: {
       type: DataTypes.BOOLEAN,

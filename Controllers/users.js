@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const { sequelize } = require('../db-config');
 
 
 exports.getToken = async (req, res) => {
@@ -36,6 +37,11 @@ exports.deleteUser = async (req, res) => {
     await user.destroy();
     res.json({ message: 'Usuario eliminado' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
+
+exports.createUser = async (req, res) => {
+    const { username, userpass, email, birthday, permissions } = req.body;
+    const user = await sequelize.models.user.create(req.body);
+  };

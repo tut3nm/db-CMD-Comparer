@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  console.log("Se ejecuta")
   return sequelize.define('brand', {
     id: {
       type: DataTypes.INTEGER,

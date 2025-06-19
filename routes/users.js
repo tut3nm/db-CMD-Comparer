@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   getToken,
   updateAccess,
-  deleteUser
+  deleteUser,
+  createUser,
 } = require('../Controllers/users');
 
 router.get('/:userid/token', getToken);
@@ -11,5 +12,7 @@ router.get('/:userid/token', getToken);
 router.put('/:id/access', updateAccess);
 
 router.delete('/:id', deleteUser);
+
+router.post('/', createUser);
 
 module.exports = router;
