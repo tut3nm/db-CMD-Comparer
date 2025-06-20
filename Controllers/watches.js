@@ -3,7 +3,10 @@ const { Watch, WatchSpecs } = require('../models');
 exports.getAllWatches = async (req, res) => {
   try {
     const watches = await Watch.findAll({
-      include: { model: WatchSpecs, as: 'specs' }
+      include: { 
+        model: WatchSpecs, 
+        as: 'specs',
+      }
     });
     res.json(watches);
   } catch (error) {
@@ -14,7 +17,10 @@ exports.getAllWatches = async (req, res) => {
 exports.getWatchById = async (req, res) => {
   try {
     const watch = await Watch.findByPk(req.params.id, {
-      include: { model: WatchSpecs, as: 'specs' }
+      include: { 
+        model: WatchSpecs, 
+        as: 'specs',
+      }
     });
 
     if (!watch) {
@@ -29,13 +35,25 @@ exports.getWatchById = async (req, res) => {
 
 exports.createWatch = async (req, res) => {
   try {
-    const { model, code, price, release_date, age, specs } = req.body;
+    const { model, code, price, release_date, age, brand_id } = req.body;
+    if (!model || !brand_id) {
+      return res.status(400).json({ message: 'Modelo y brand_id son requeridos' });
+    }
 
-    const watch = await Watch.create({ model, code, price, release_date, age });
-    const watchSpecs = await WatchSpecs.create({ ...specs, watch_id: watch.id })
-
-    res.status(201).json({ watch, watchSpecs });
+    const watch = await Watch.create({ 
+      model, 
+      code, 
+      price, 
+      release_date, 
+      age, 
+      brand_id 
+    });
+    
+    res.status(201).json(watch);
   } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      return res.status(400).json({ message: error.errors.map(e => e.message) });
+    }
     res.status(500).json({ error: error.message });
   }
 };
@@ -48,6 +66,9 @@ exports.updateWatch = async (req, res) => {
     await watch.update(req.body);
     res.json(watch);
   } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      return res.status(400).json({ message: error.errors.map(e => e.message) });
+    }
     res.status(500).json({ error: error.message });
   }
 };
@@ -58,7 +79,7 @@ exports.deleteWatch = async (req, res) => {
     if (!watch) return res.status(404).json({ message: 'Reloj no encontrado' });
 
     await watch.destroy();
-    res.json({ message: 'Reloj eliminado' });
+    res.json({ message: 'Reloj eliminado correctamente' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

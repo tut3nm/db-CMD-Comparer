@@ -9,8 +9,10 @@ app.get('/', (req, res) => {
 app.use(cors());
 app.use(express.json());
 app.use('/api/brands', require('./routes/brands'));
+app.use('/api/phoneSpecs', require('./routes/phoneSpecs'));
 app.use('/api/phones', require('./routes/phones'));
 app.use('/api/watches', require('./routes/watches'));
+app.use('/api/watchSpecs', require('./routes/watchSpecs'))
 app.use('/api/users', require('./routes/users'));
 
 
