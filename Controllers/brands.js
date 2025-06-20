@@ -1,17 +1,5 @@
 const { Brand, Phone, Watch} = require('../models');
 
-
-exports.getBrandById = async (req, res) => {
-  try {
-    const brand = await Brand.findByPk(req.params.id);
-    if (!brand) return res.status(404).json({ message: 'Marca no encontrada' });
-    res.json(brand);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-
 exports.getPhonesByBrand = async (req, res) => {
   try {
     const phones = await Phone.findAll({ where: { brand_id: req.params.id } });
