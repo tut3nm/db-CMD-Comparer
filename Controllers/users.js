@@ -47,10 +47,6 @@ exports.createUser = async (req, res) => {
     if (!username || !userpass || !email || !birthday) {
       return res.status(400).json({ message: 'Faltan campos obligatorios: username, userpass, email o birthday' });
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ message: 'Email no válido' });
-    }
     const existing = await User.findOne({ where: { username } });
     if (existing) {
       return res.status(400).json({ message: 'El nombre de usuario ya está en uso' });
